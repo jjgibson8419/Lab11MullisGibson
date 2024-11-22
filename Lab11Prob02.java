@@ -1,9 +1,6 @@
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.util.*;
+import java.util.ArrayList;
 
 /**
  * File: Lab11Prob01.java
@@ -15,11 +12,10 @@ import java.io.IOException;
 public class Lab11Prob02 {
 
     public static void main(String[] args) {
+        ArrayList<Person> people = new ArrayList<>();
 
-        // Create an input stream and output stream
-        try (DataInputStream input = new DataInputStream(new FileInputStream("src/people.dat"));
-             DataOutputStream output = new DataOutputStream(new FileOutputStream("src/people-copy.dat"));) {
-            // read date from file
+        try (DataInputStream input = new DataInputStream(new FileInputStream("src/people.dat"))) {
+
             while (true) {
                 int age = input.readInt();
                 String name = input.readUTF();
@@ -27,18 +23,28 @@ public class Lab11Prob02 {
                 int zip = input.readInt();
                 double salary = input.readDouble();
 
-                // Print data to console and to output
-                System.out.printf("%d %s %s %d %.2f%n", age, name, address, zip, salary);
-                output.writeInt(age);
-                output.writeUTF(name);
-                output.writeUTF(address);
-                output.writeInt(zip);
-                output.writeDouble(salary);
-
+                people.add(new Person(age, name, address, zip, salary));
             }
-        } catch (IOException ex) {
+
+        } catch (EOFException e) {
+
+    } catch (IOException e) {
+            e.printStackTrace();
 
         }
 
+        java.util.Collections.sort(people);
+
+        try (DataOutputStream output = new DataOutputStream(new FileOutputStream("src/people-salary-sorted.dat"))) {
+            for (Person person : people) {
+                System.out.print(person);
+                output.writeUTF(person.toString());
+            }
+
+        } catch (EOFException e) {
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
