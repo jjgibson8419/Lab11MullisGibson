@@ -28,7 +28,7 @@ public class Lab11Prob01 {
 				double salary = input.readDouble();
 
 				// Print data to console and to output
-				System.out.printf("%d %s %s %d %.2f%n", age, name, address, zip, salary);
+				System.out.printf("%d %s %s %d $%,.2f%n", age, name, address, zip, salary);
 				output.writeInt(age);
 				output.writeUTF(name);
 				output.writeUTF(address);
