@@ -21,15 +21,15 @@ public class Lab11Prob01 {
     String firstName = input.readUTF();
     String lastName = input.readUTF();
     int age = input.readInt();
-    double gpa = input.readDouble();
+    double salary = input.readDouble();
 
-    System.out.println(id + " " + firstName + " " + lastName + " " + age + " " + gpa);
+    System.out.println(id + " " + firstName + " " + lastName + " " + age + " " + salary);
 
     output.writeInt(id);
     output.writeUTF(firstName);
     output.writeUTF(lastName);
     output.writeInt(age);
-    output.writeDouble(gpa);
+    output.writeDouble(salary);
 }
 
 
