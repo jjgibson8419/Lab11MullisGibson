@@ -17,13 +17,21 @@ public class Lab11Prob01 {
 				DataOutputStream output = new DataOutputStream(new FileOutputStream("src/people-copy.dat"));
 			) {
 			while (true) {
-			System.out.println(input.readInt() + " " + input.readUTF() + " " + input.readUTF() + " " + input.readInt() + " " + input.readDouble());
-			
-			output.writeInt(input.readInt());
-			output.writeUTF(input.readUTF());
-			output.writeUTF(input.readUTF());
-			output.writeInt(input.readInt());
-			output.writeDouble(input.readDouble());
+    int id = input.readInt();
+    String firstName = input.readUTF();
+    String lastName = input.readUTF();
+    int age = input.readInt();
+    double gpa = input.readDouble();
+
+    System.out.println(id + " " + firstName + " " + lastName + " " + age + " " + gpa);
+
+    output.writeInt(id);
+    output.writeUTF(firstName);
+    output.writeUTF(lastName);
+    output.writeInt(age);
+    output.writeDouble(gpa);
+}
+
 
 			}
 		} catch (IOException ex) {
